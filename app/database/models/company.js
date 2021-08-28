@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class System extends Model {
+  class Company extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -11,30 +11,32 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      System.hasMany(models.Company,{
-        as:'Companies',
-        foreignKey:'systemId'
-      })
+      Company.belongsTo(models.System),
+      Company.hasMany(models.Department)
     }
   };
-  system.init({
+  Company.init({
+    systemId: {
+      type:DataTypes.INTEGER,
+      allowNull: false,
+    },
     name: {
       type:DataTypes.STRING,
-      allowNull:false,
+      allowNull: false,
       unique:true
     },
-    status: {
-      type:DataTypes.BOOLEAN,
-      defaultValue:true
-    },
-    updatedUser: {
+    address: DataTypes.STRING,
+    url: DataTypes.STRING,
+    phone: {
       type:DataTypes.STRING,
-      allowNull:false,
-    }
+      allowNull: false,
+      unique:true
+    },
+    company_pic: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'System',
-    tableName:'systems'
+    modelName: 'Company',
+    tableName: 'companies',
   });
-  return System;
+  return Company;
 };
