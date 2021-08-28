@@ -1,6 +1,5 @@
 const path = require('path')
-
-module.export = {
+module.exports = {
     'config': path.resolve('config','database.js'),
     'models-path': path.resolve('app','database','models'),
     'seeders-path': path.resolve('app','database','seeders'),

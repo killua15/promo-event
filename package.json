@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node app/server.js",
-    "dev": "nodemon app/server.js"
+    "dev": "nodemon app/server.js",
+    "migrate": "npx sequelize db:migrate"
   },
   "keywords": [],
   "author": "David Lopez Salinas",
