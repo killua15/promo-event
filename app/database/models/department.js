@@ -11,12 +11,24 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-       Department.belongsTo(models.Company);
-       Department.hasMany(models.Category)
+       Department.belongsTo(models.Company,{
+        foreignKey:'companyId'
+       });
+       Department.hasMany(models.Category,{
+        as:'categories',
+        foreignKey:'departmentId'
+       })
     }
   }
   Department.init({
-    companyId: DataTypes.INTEGER,
+    companyId: {
+      type:DataTypes.INTEGER,
+      allowNull: false,
+      references:{
+        model:'companies',
+        key:'id'
+      }
+    },
     name: DataTypes.STRING
   }, {
     sequelize,
