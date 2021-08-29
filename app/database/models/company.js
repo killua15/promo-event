@@ -11,8 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Company.belongsTo(models.System),
-      Company.hasMany(models.Department)
+       Company.belongsTo(models.System);
+       Company.hasMany(models.Department);
     }
   };
   Company.init({

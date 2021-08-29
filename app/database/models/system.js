@@ -17,7 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       })
     }
   };
-  system.init({
+  System.init({
     name: {
       type:DataTypes.STRING,
       allowNull:false,

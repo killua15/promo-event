@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Category.belongsTo(models.Department),
-      Category.hasMany(models.Product)
+     Category.hasMany(models.Product)
     }
   };
   Category.init({
@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     name: DataTypes.STRING
   }, {
     sequelize,
-    modelName: 'category',
+    modelName: 'Category',
     tableName:'categories'
   });
   return Category;
