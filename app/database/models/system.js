@@ -14,6 +14,11 @@ module.exports = (sequelize, DataTypes) => {
       System.hasMany(models.Company,{
         as:'companies',
         foreignKey:'systemId'
+      });
+      System.belongsToMany(models.User,{ 
+        as:'users',
+        foreignKey:'systemId',
+        through: 'system_users' 
       })
     }
   };

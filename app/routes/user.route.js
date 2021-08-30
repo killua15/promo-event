@@ -4,7 +4,7 @@ const {userController} = require('../controllers')
 const {encrtpPass} = require('../middlewares')
 
 
-router.post('/',userController.create);
+router.post('/create',encrtpPass,userController.create);
 router.get('/',userController.findAll);
 router.get('/:id',userController.findAllById);
 router.patch('/:id',userController.update);

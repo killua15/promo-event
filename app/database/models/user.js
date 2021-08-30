@@ -9,6 +9,11 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      User.belongsToMany(models.System,{ 
+        as:'systems',
+        foreignKey:'userId', 
+        through: 'system_users' 
+      })
     }
   }
   User.init(

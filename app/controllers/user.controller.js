@@ -1,7 +1,8 @@
-const { User } = require("../database/models");
-
+const { User,System,System_User} = require("../database/models");
+const authVerify = require('../utils/authVerify')
 module.exports = {
   async create(req, res) {
+
     const { name, lastname,username,password,email,movil } = req.body;
     try {
      
@@ -24,8 +25,21 @@ module.exports = {
     }
   },
   async findAll (req, res) {
+    const {token} = req.headers
+    console.log(token)
     try {
-      const user = await User.findAll()
+     // const veryfy = await authVerify(token)
+      const user = await User.findAll({
+        attributes: ['id', 'name'],
+        include: [{
+          model: System,
+          as: 'systems',
+          attributes:['updatedUser','id','name'],
+          through: {
+            attributes:[]
+          }
+        }]
+      })
       return res.status(200).json({
         ok: true,
         user

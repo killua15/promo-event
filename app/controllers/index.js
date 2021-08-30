@@ -6,6 +6,7 @@ const categoryController = require("./category.controller")
 const productController = require("./product.controller") 
 const pictureController = require("./picture.controller")
 const userController = require("./user.controller")
+const signinController = require("./signin.controller")
 
 module.exports = {
    defaultController,
@@ -15,5 +16,6 @@ module.exports = {
    categoryController,
    productController,
    pictureController,
-   userController
+   userController,
+   signinController
 };

@@ -10,5 +10,7 @@ router.use('/api/company', require("./company.route"));
 router.use('/api/category', require("./category.route"));
 router.use('/api/product', require("./product.route"));
 router.use('/api/picture', require("./picture.route"));
+router.use('/api/user', require("./user.route"));
+router.use('/api', require("./signin.route"));
 
 module.exports = router;

@@ -1,6 +1,37 @@
-const { System } = require("../database/models");
+const { System,User,System_User } = require("../database/models");
 
 module.exports = {
+  async create(req, res) {
+
+    const {name,userId} = req.body
+    try {
+      const user = await User.findOne({
+        where:{
+          id:userId
+        }
+      })
+      console.log(user)
+      const systems = await System.create({
+        name,
+        status:true,
+        updatedUser: user.name,
+        createdAt: new Date(),
+        updatedAt: new Date()
+      })
+      user.addSystem(systems)
+      return res.status(200).json({
+        ok: true,
+        systems,
+      });
+    } catch (err) {
+      return res.status(500).json({
+        ok: false,
+        message: err.message,
+        err,
+      });
+    }
+  },
+
   async findAll(req, res) {
     try {
       const systems = await System.findAll({
