@@ -1,16 +1,11 @@
-const express = require("express")
-const router = express.Router()
+const express = require("express");
+const router = express.Router();
 
-const {defaultController} = require('../controllers')
+const { defaultController, userController } = require("../controllers");
 
-router.get('/', defaultController.default);
-router.use('/api/system', require("./route.system"));
-router.use('/api/department', require("./department.route"));
-router.use('/api/company', require("./company.route"));
-router.use('/api/category', require("./category.route"));
-router.use('/api/product', require("./product.route"));
-router.use('/api/picture', require("./picture.route"));
-router.use('/api/user', require("./user.route"));
-router.use('/api', require("./signin.route"));
+router.get("/", defaultController.default);
+router.use("/api/user", require("./user.route"));
+router.use("/api/artist", require("./artist.route"));
+router.use("/api/event", require("./event.route"));
 
 module.exports = router;

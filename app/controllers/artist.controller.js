@@ -2,23 +2,21 @@ const { User, Artist } = require("../database/models");
 const authVerify = require("../utils/authVerify");
 module.exports = {
   async create(req, res) {
-    const { name, lastname, email, password, movile, phone } = req.body;
+    const { name, logo, pictures, userId } = req.body;
 
     try {
-      await User.create({
+      const artist = await Artist.create({
+        userId,
         name,
-        lastname,
-        password,
-        email,
-        movile,
-        phone,
+        logo,
+        pictures,
         createdAt: new Date(),
         updatedAt: new Date(),
       });
 
       return res.status(200).json({
         ok: true,
-        message: "User create success!!",
+        message: "Artist create success!!",
       });
     } catch (err) {
       return res.status(500).json({
@@ -33,19 +31,12 @@ module.exports = {
     // console.log(token);
     try {
       // const veryfy = await authVerify(token)
-      const user = await User.findAll({
-        attributes: ["id", "name", "email", "movile", "phone"],
-        include: [
-          {
-            model: Artist,
-            as: "artists",
-            attributes: ["id", "name"],
-          },
-        ],
+      const artist = await Artist.findAll({
+        attributes: ["id", "name"],
       });
       return res.status(200).json({
         ok: true,
-        user,
+        artist,
       });
     } catch (err) {
       return res.status(500).json({
@@ -59,22 +50,15 @@ module.exports = {
     const { id } = req.params;
     console.log(id);
     try {
-      const user = await User.findOne({
+      const artist = await Artist.findOne({
         where: {
           id,
         },
-        attributes: ["id", "name", "email", "movile", "phone"],
-        include: [
-          {
-            model: Artist,
-            as: "artists",
-            attributes: ["id", "name"],
-          },
-        ],
+        attributes: ["id", "name"],
       });
       return res.status(200).json({
         ok: true,
-        user,
+        artist,
       });
     } catch (err) {
       return res.status(500).json({
@@ -86,26 +70,21 @@ module.exports = {
   },
   async update(req, res) {
     const { id } = req.params;
-    const { name, lastname, username, password, email, movile, phone } =
-      req.body;
+    const { name, logo, pictures } = req.body;
     try {
-      const user = await User.findOne({
+      const artist = await Artist.findOne({
         where: {
           id,
         },
       });
       if (user) {
-        user.name = name ? name : user.name;
-        user.lastname = lastname ? lastname : user.lastname;
-        user.username = username ? username : user.username;
-        user.password = password ? password : user.password;
-        user.email = email ? email : user.email;
-        user.movile = movile ? movile : user.movile;
-        user.phone = phone ? phone : user.phone;
+        artist.name = name ? name : artist.name;
+        artist.logo = logo ? logo : artist.logo;
+        artist.pictures = pictures ? pictures : artist.pictures;
 
-        user.updatedAt = new Date();
+        artist.updatedAt = new Date();
 
-        await user.save();
+        await artist.save();
 
         return res.status(200).json({
           ok: true,

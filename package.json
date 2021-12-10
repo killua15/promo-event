@@ -1,7 +1,7 @@
 {
-  "name": "sellCubaSass-server",
+  "name": "HashShop",
   "version": "1.0.0",
-  "description": "Sass for shopStores in Cuba",
+  "description": "Server notification hash products",
   "main": "index.js",
   "scripts": {
     "start": "node app/server.js",

@@ -9,11 +9,10 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.belongsToMany(models.System,{ 
-        as:'systems',
-        foreignKey:'userId', 
-        through: 'system_users' 
-      })
+      User.hasMany(models.Artist, {
+        as: "artists",
+        foreignKey: "userId",
+      });
     }
   }
   User.init(
@@ -22,38 +21,37 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      lastname: {
-        type: DataTypes.STRING,
-        allowNull: false,
-      },
-      username: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: false,
-      },
-      email:{
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: false,
-      },
-      movil: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: false,
-      },
       password: {
         type: DataTypes.STRING,
         allowNull: false,
       },
-      status:{
+      status: {
         type: DataTypes.BOOLEAN,
-        defaultValue:true
-      }
+        defaultValue: true,
+      },
+      lastname: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
+      phone: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      movile: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+      },
     },
     {
       sequelize,
       modelName: "User",
-      tableName:'users'
+      tableName: "users",
     }
   );
   return User;
