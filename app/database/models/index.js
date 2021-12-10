@@ -8,10 +8,16 @@ const { databaseConfig } = require("../../../config");
 const db = {};
 
 const sequelize = new Sequelize(
-  databaseConfig.database,
-  databaseConfig.username,
-  databaseConfig.password,
-  databaseConfig
+  "postgres://dttntnrujrdohu:52694ab2ae65dbd126d7a3b8b3ecca52079e01fe2d71fc762e99c23df9d98aaf@ec2-34-233-214-228.compute-1.amazonaws.com:5432/d7qjlql1cshdf7",
+  {
+    dialect: "postgres",
+    dialectOptions: {
+      ssl: {
+        require: true,
+        rejectUnauthorized: false,
+      },
+    },
+  }
 );
 
 fs.readdirSync(__dirname)

@@ -13,7 +13,12 @@ app.use(require("./routes"));
 app.listen(port, () => {
   console.log("Running is running in", port);
 
-  sequelize.authenticate().then(() => {
-    console.log("connection database success!!");
-  });
+  sequelize
+    .authenticate()
+    .then(() => {
+      console.log("connection database success!!");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 });
