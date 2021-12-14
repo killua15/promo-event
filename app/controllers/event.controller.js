@@ -2,6 +2,7 @@ const { Event, Artist, Location } = require("../database/models");
 const authVerify = require("../utils/authVerify");
 module.exports = {
   async create(req, res) {
+    console.log(req);
     const {
       name,
       flayer,
