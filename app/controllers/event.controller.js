@@ -45,7 +45,8 @@ module.exports = {
     } catch (err) {
       return res.status(500).json({
         ok: false,
-        message: err.message,
+        // message: err.message,
+        message: req.body,
         err,
       });
     }
