@@ -29,7 +29,7 @@ module.exports = {
       });
 
       const location = await Location.create({
-        idEvent: event.id,
+        idEvent: +event.id,
         latitude,
         longitude,
         icon_map,
