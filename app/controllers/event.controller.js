@@ -18,7 +18,7 @@ module.exports = {
 
     try {
       const event = await Event.create({
-        artistId,
+        artistId: +artistId,
         name,
         flayer,
         place,
