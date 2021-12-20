@@ -14,6 +14,7 @@ module.exports = {
       latitude,
       longitude,
       icon_map,
+      date,
     } = req.body;
 
     try {
@@ -25,6 +26,7 @@ module.exports = {
         address,
         cover,
         description,
+        date,
         createdAt: new Date(),
         updatedAt: new Date(),
       });
@@ -64,6 +66,7 @@ module.exports = {
           "place",
           "address",
           "cover",
+          "date",
           "description",
         ],
         include: [
@@ -102,6 +105,7 @@ module.exports = {
           "address",
           "cover",
           "description",
+          "date",
         ],
         include: [
           {
@@ -135,6 +139,7 @@ module.exports = {
       latitude,
       longitude,
       icon_map,
+      date,
     } = req.body;
     try {
       const event = await Event.findOne({
@@ -154,6 +159,7 @@ module.exports = {
         event.place = place ? place : event.place;
         event.description = description ? description : event.description;
         event.cover = cover ? cover : event.cover;
+        event.date = date ? date : event.date;
         location.icon_map = icon_map ? icon_map : location.icon_map;
         location.latitude = latitude ? latitude : location.latitude;
         location.longitude = longitude ? longitude : location.longitude;
