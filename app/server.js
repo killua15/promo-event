@@ -9,7 +9,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use(require("./routes"));
-
+app.use(
+  bodyParser.json({
+    extended: true,
+    limit: "50mb",
+  })
+);
 app.listen(port, () => {
   console.log("Running is running in", port);
 
