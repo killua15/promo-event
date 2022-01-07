@@ -16,12 +16,12 @@ module.exports = {
       icon_map,
       date,
     } = req.body;
-    const blob_flayer = b64toBlob(flayer, "image/jpeg");
+    // const blob_flayer = b64toBlob(flayer, "image/jpeg");
     try {
       const event = await Event.create({
         artistId: +artistId,
         name,
-        blob_flayer,
+        flayer,
         place,
         address,
         cover,
