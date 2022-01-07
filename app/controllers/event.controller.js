@@ -21,8 +21,8 @@ module.exports = {
       const event = await Event.create({
         artistId: +artistId,
         name,
-        flayer,
         blob_flayer,
+        place,
         address,
         cover,
         description,
