@@ -19,7 +19,7 @@ module.exports = {
         allowNull: false,
       },
       flayer: {
-        type: Sequelize.BLOB,
+        type: Sequelize.BLOB("long"),
         allowNull: false,
       },
       place: {
