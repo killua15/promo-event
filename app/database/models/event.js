@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       artistId: { type: DataTypes.INTEGER, allowNull: false },
       name: { type: DataTypes.STRING, allowNull: false },
-      flayer: { type: DataTypes.STRING, allowNull: false },
+      flayer: { type: DataTypes.BLOB, allowNull: false },
       place: { type: DataTypes.STRING, allowNull: false },
       address: { type: DataTypes.STRING, allowNull: false },
       cover: { type: DataTypes.STRING, allowNull: false },
