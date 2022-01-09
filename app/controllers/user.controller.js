@@ -2,7 +2,7 @@ const { User, Artist } = require("../database/models");
 const authVerify = require("../utils/authVerify");
 module.exports = {
   async create(req, res) {
-    const { name, lastname, email, password, movile, phone } = req.body;
+    const { name, lastname, email, password, movile, phone, role } = req.body;
 
     try {
       await User.create({
@@ -12,6 +12,7 @@ module.exports = {
         email,
         movile,
         phone,
+        role,
         createdAt: new Date(),
         updatedAt: new Date(),
       });
@@ -86,7 +87,7 @@ module.exports = {
   },
   async update(req, res) {
     const { id } = req.params;
-    const { name, lastname, username, password, email, movile, phone } =
+    const { name, lastname, username, password, email, movile, phone, role } =
       req.body;
     try {
       const user = await User.findOne({
@@ -102,7 +103,7 @@ module.exports = {
         user.email = email ? email : user.email;
         user.movile = movile ? movile : user.movile;
         user.phone = phone ? phone : user.phone;
-
+        user.role = role ? role : user.role;
         user.updatedAt = new Date();
 
         await user.save();

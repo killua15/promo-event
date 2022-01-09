@@ -41,6 +41,10 @@ module.exports = {
         allowNull: false,
         unique: true,
       },
+      role: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE,
