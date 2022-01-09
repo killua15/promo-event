@@ -5,22 +5,33 @@ module.exports = {
     const { name, lastname, email, password, movile, phone, role } = req.body;
 
     try {
-      await User.create({
-        name,
-        lastname,
-        password,
-        email,
-        movile,
-        phone,
-        role,
-        createdAt: new Date(),
-        updatedAt: new Date(),
+      const user = await User.findOne({
+        where: {
+          email,
+        },
       });
-
-      return res.status(200).json({
-        ok: true,
-        message: "User create success!!",
-      });
+      if (!user) {
+        await User.create({
+          name,
+          lastname,
+          password,
+          email,
+          movile,
+          phone,
+          role,
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        });
+        return res.status(200).json({
+          ok: true,
+          message: "User create success!!",
+        });
+      } else {
+        return res.status(200).json({
+          ok: true,
+          message: "User already exist",
+        });
+      }
     } catch (err) {
       return res.status(500).json({
         ok: false,
